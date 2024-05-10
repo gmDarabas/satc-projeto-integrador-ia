@@ -8,7 +8,9 @@ export default function AuthLayout() {
       <Card className={cn("w-[380px]")}>
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription>Entre com seu email e senha para acessar sua conta</CardDescription>
+          <CardDescription>
+            Entre com seu email e senha para acessar sua conta
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
           <div className="flex items-center">

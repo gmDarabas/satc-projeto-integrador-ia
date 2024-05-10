@@ -1,3 +1,4 @@
+import { cadastro } from "@/api/auth/cadastro";
 import { login } from "@/api/auth/login";
 import { useAuthContext } from "@/components/auth-context";
 import { Button } from "@/components/ui/button";
@@ -8,29 +9,31 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
-interface LoginForm {
+interface CadastroForm {
+  nome: string;
   email: string;
   senha: string;
 }
 
-export default function Login() {
+export default function Cadastro() {
   // const [loginIncorreto, setLoginIncorreto] = useState<boolean>(false);
-  const { setAuthContext } = useAuthContext();
+  // const { setAuthContext } = useAuthContext();
   const navigate = useNavigate();
 
-  const onSubmit = async (payload: LoginForm) => {
+  const onSubmit = async (payload: CadastroForm) => {
     try {
-      const data = await login(payload);
+      const data = await cadastro(payload);
       console.log({ data });
-      localStorage.setItem("token", JSON.stringify(data.accessToken));
-      setAuthContext({ usuario: data.usuario });
       navigate("/");
+      // localStorage.setItem("token", JSON.stringify(data.accessToken));
+      // setAuthContext({ usuario: data.usuario });
     } catch (e) {
       // setLoginIncorreto(true);
     }
   };
 
   const formSchema = z.object({
+    nome: z.string(),
     email: z.string().email({
       message: "Insira um email válido",
     }),
@@ -42,6 +45,19 @@ export default function Login() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
+      <FormField
+          control={form.control}
+          name="nome"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nome</FormLabel>
+              <FormControl>
+                <Input placeholder="Nome" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -70,9 +86,10 @@ export default function Login() {
         />
 
         <Button type="submit" className="w-full">
-          Login
+          Cadastro
         </Button>
-        <p onClick={() => navigate('/cadastro')} className="text-sky-600 mb-4 text-center cursor-pointer">Cadastre-se</p>
+        <p onClick={() => navigate('/login')} className="text-sky-600 mb-4 text-center cursor-pointer">Login</p>
+
       </form>
     </Form>
   );
