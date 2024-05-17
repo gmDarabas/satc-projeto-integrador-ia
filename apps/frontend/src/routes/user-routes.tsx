@@ -3,10 +3,11 @@ import { Route } from "react-router-dom";
 import NotFoundRedirect from "./not-found-redirect";
 import SintomasPage from "@/pages/sintomas";
 import SintomaDetalhePage from "@/pages/sintomas/sintoma-detalhe";
+import Layout from "@/pages/layout";
 
 export default function UserRoutes() {
   return (
-    <Route /*element={<AdminLayout menuItens={menuItens} />}*/>
+    <Route element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="/cadastrar-sintoma" element={<SintomasPage />} />
       <Route path="/animal/:animalId/cadastrar-sintoma" element={<SintomasPage />} />

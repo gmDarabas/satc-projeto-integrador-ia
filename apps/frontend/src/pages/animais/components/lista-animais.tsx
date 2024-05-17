@@ -1,18 +1,12 @@
 import { useListAnimais } from "@/api/animais/list";
 import { Button } from "@/components/ui/button";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ListaAnimais() {
   const { data: animais = [] } = useListAnimais();
   const navigate = useNavigate();
   const navegarCriar = () => navigate("/cadastrar-sintoma");
-
-
-  useEffect(() => {
-    console.log({animais})
-  }, [animais])
 
   return (
     <div className="px-5">
@@ -25,7 +19,7 @@ export default function ListaAnimais() {
       </h2>
       {animais.map((animal, index) => (
         <div
-          className="bg-gray-100 rounded-lg shadow-md p-4 mb-4 cursor-pointer"
+          className="bg-primary rounded-lg shadow-md p-4 mb-4 cursor-pointer"
           key={index}
           onClick={() => navigate(`/animal/${animal.id}/cadastrar-sintoma`)}
         >
