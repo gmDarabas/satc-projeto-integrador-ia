@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import apiBackend from "../api";
 import { Especie } from "../sintomas/create";
+import { Imagem } from "../imagens/create";
 
 export type Animal = {
   id: number;
@@ -9,6 +10,7 @@ export type Animal = {
   idade: number;
   peso: number;
   nome: string;
+  imagem?: Imagem;
 };
 
 export const list = async (): Promise<Animal[]> => {

@@ -8,7 +8,6 @@ export const getOne = async (id: number): Promise<Sintoma> => {
 };
 
 export const useGetSintoma = (id?: number) => {
-  console.log({ id, type: typeof id });
   return useQuery({
     queryKey: ["sintoma", id],
     queryFn: () => (id ? getOne(id) : null),

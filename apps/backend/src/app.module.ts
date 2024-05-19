@@ -10,6 +10,8 @@ import { AnimalModule } from "./v1/animal/animal.module";
 import { SintomaModule } from "./v1/sintoma/sintoma.module";
 import { Animal } from "./v1/animal/entities/animal.entity";
 import { Sintoma } from "./v1/sintoma/entities/sintoma.entity";
+import { ImagemModule } from "./v1/imagem/image.module";
+import { Imagem } from "./v1/imagem/entities/imagem.entity";
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { Sintoma } from "./v1/sintoma/entities/sintoma.entity";
           username: configService.get("DATABASE_USER"),
           password: configService.get("DATABASE_PASSWORD"),
           database: configService.get("DATABASE_NAME"),
-          entities: [Usuario, Animal, Sintoma],
+          entities: [Usuario, Animal, Sintoma, Imagem],
           synchronize: true,
           namingStrategy: new SnakeNamingStrategy(),
         };
@@ -35,6 +37,7 @@ import { Sintoma } from "./v1/sintoma/entities/sintoma.entity";
     UsuarioModule,
     AnimalModule,
     SintomaModule,
+    ImagemModule,
   ],
   controllers: [],
   providers: [],

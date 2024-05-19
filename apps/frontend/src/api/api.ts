@@ -2,7 +2,7 @@ import axios from "axios";
 console.log({ baseURL: import.meta.env.VITE_BACKEND_URL });
 const apiBackend = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -27,7 +27,7 @@ apiBackend.interceptors.response.use(
   },
   (error) => {
     console.log({ error });
-    const message = error.response?.data?.message || "Erro ao processar requisição";
+    // const message = error.response?.data?.message || "Erro ao processar requisição";
     // notification.error({ message });
     return Promise.reject(error);
   },

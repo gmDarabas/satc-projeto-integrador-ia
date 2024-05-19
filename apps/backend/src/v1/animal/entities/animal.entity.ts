@@ -1,6 +1,7 @@
 import { CommonEntity } from "src/common/entities/common.entity";
+import { Imagem } from "src/v1/imagem/entities/imagem.entity";
 import { Usuario } from "src/v1/usuario/entities/usuario.entity";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 
 export enum Especie {
   Cachorro = "Cachorro",
@@ -31,4 +32,11 @@ export class Animal extends CommonEntity {
 
   @Column()
   usuario_id: number;
+
+  @JoinColumn()
+  @OneToOne(() => Imagem, { nullable: true })
+  imagem?: Imagem;
+
+  @Column({ nullable: true })
+  imagem_id?: number;
 }

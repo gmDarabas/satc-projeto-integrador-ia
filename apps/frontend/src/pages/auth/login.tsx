@@ -21,7 +21,6 @@ export default function Login() {
   const onSubmit = async (payload: LoginForm) => {
     try {
       const data = await login(payload);
-      console.log({ data });
       localStorage.setItem("token", JSON.stringify(data.accessToken));
       setAuthContext({ usuario: data.usuario });
       navigate("/");

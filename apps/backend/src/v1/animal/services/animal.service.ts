@@ -23,7 +23,7 @@ export class AnimalService {
   }
 
   async findByUser(userId: number): Promise<Array<Animal>> {
-    return this.repository.find({ where: { usuario_id: userId } });
+    return this.repository.find({ where: { usuario_id: userId }, relations: ["imagem"] });
   }
 
   async findOne(id: number, usuarioId: number): Promise<Animal> {

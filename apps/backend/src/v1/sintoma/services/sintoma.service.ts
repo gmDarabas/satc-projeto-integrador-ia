@@ -7,6 +7,7 @@ import { Repository, FindManyOptions, UpdateResult } from "typeorm";
 import { Sintoma } from "../entities/sintoma.entity";
 import { AnimalService } from "src/v1/animal/services/animal.service";
 import { CreateAnimalDto } from "src/v1/animal/dto/create-animal.dto";
+import { OpenAIService } from "src/common/services/openai/openai.service";
 
 @Injectable()
 export class SintomaService {
@@ -14,24 +15,24 @@ export class SintomaService {
     @InjectRepository(Sintoma)
     private repository: Repository<Sintoma>,
     private animalService: AnimalService,
+    private openAIService: OpenAIService,
   ) {}
 
   async create(createSintomaDto: CreateSintomaDto, usuarioId: number): Promise<Sintoma> {
-    let animalId;
+    let animal;
     if ("id" in createSintomaDto.animal && !!createSintomaDto.animal.id) {
-      animalId = createSintomaDto.animal.id;
+      animal = { id: createSintomaDto.animal.id };
     } else {
-      const animal = await this.animalService.create(createSintomaDto.animal as CreateAnimalDto, usuarioId);
-      animalId = animal.id;
+      animal = await this.animalService.create(createSintomaDto.animal as CreateAnimalDto, usuarioId);
     }
 
-    const diagnostico =
-      "Mussum Ipsum, cacilds vidis litro abertis. Nulla id gravida magna, ut semper sapien. Sapien in monti palavris qui num significa nadis i pareci latim. In elementis mé pra quem é amistosis quis leo. Negão é teu passadis, eu sou faxa pretis"; // usar service para fazer consulta
-    return this.repository.save({
+    const sintoma = await this.repository.create({
       ...createSintomaDto,
-      animal: { id: animalId },
-      diagnostico,
+      animal,
     });
+
+    sintoma.diagnostico = await this.openAIService.diagnosticarAnimal(sintoma);
+    return this.repository.save(sintoma);
   }
 
   async findAll(page: number = 1, rpp: number = 10, options?: FindManyOptions<Sintoma>): Promise<Page<Sintoma>> {

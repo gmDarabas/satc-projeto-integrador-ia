@@ -8,13 +8,9 @@ export default function Router() {
   const estaLogado = !!authContext;
 
   const routes = () => {
-    console.log({ estaLogado });
     if (estaLogado) {
-      console.log("user routes");
       return UserRoutes();
     }
-
-    console.log("auth routes");
     return AuthRoutes();
   };
 
