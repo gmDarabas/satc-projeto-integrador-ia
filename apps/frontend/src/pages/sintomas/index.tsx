@@ -66,10 +66,10 @@ export default function SintomasPage() {
       <h2 className="text-2xl font-bold mb-4 text-center">Relatar Sintoma</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-          <div className="grid grid-rows-1 grid-flow-col gap-2">
+          <div className="grid grid-rows-1 grid-flow-col gap-4">
             <Avatar className="w-36 h-36 rounded-sm">
               <AvatarImage src={preview} />
-              <AvatarFallback>Pet</AvatarFallback>
+              <AvatarFallback className="bg-white">Pet</AvatarFallback>
             </Avatar>
 
             <FormItem className="col-span-2">
