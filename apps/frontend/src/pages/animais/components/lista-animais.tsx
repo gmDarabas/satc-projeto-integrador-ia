@@ -1,6 +1,7 @@
 import { useListAnimais } from "@/api/animais/list";
 import { Button } from "@/components/ui/button";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ImagemAnimal from "./imagem-animal";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,11 @@ export default function ListaAnimais() {
   const { data: animais = [] } = useListAnimais();
   const navigate = useNavigate();
   const navegarCriar = () => navigate("/cadastrar-sintoma");
+
+
+  useEffect(() => {
+    console.log({animais})
+  }, [animais])
 
   return (
     <div className="px-5 bg-[#f7f7f7] h-[100vh]">
