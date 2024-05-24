@@ -6,7 +6,7 @@
     "dev": "turbo dev",
     "dev:back": "turbo run dev --filter=backend...",
     "dev:front": "turbo run dev --filter=frontend...",
-    "lint": "turbo lint",
+    "lint": "turbo lint --fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {

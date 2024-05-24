@@ -1,12 +1,19 @@
 import apiBackend from "../api";
 
+export type Usuario = {
+  id: number;
+  nome: string;
+  email: string;
+};
+
 type LoginParam = {
   email: string;
   senha: string;
 };
+
 type LoginResponse = {
   accessToken: string;
-  usuario: any;
+  usuario: Usuario;
 };
 
 export const login = async (data: LoginParam): Promise<LoginResponse> => {

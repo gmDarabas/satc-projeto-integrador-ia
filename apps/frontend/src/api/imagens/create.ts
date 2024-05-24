@@ -3,9 +3,14 @@ import apiBackend from "../api";
 import { useToast } from "@/components/ui/use-toast";
 import { Especie } from "../sintomas/create";
 
+type ImageBuffer = {
+  type: string;
+  data: number[];
+};
+
 export type Imagem = {
   id: number;
-  data: any;
+  data: ImageBuffer;
   filename: string;
 };
 

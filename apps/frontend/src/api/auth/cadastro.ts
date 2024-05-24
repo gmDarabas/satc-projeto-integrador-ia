@@ -1,4 +1,5 @@
 import apiBackend from "../api";
+import { Usuario } from "./login";
 
 type LoginParam = {
   nome: string;
@@ -6,12 +7,9 @@ type LoginParam = {
   senha: string;
 };
 
-// type LoginResponse = {
-//   accessToken: string;
-//   usuario: any;
-// };
+type Response = Usuario;
 
-export const cadastro = async (data: LoginParam): Promise<any> => {
-  const result = await apiBackend.post<any>("/api/v1/usuarios", data);
+export const cadastro = async (data: LoginParam): Promise<Response> => {
+  const result = await apiBackend.post<Response>("/api/v1/usuarios", data);
   return result.data;
 };

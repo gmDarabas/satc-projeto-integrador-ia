@@ -1,6 +1,4 @@
 import { cadastro } from "@/api/auth/cadastro";
-import { login } from "@/api/auth/login";
-import { useAuthContext } from "@/components/auth-context";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -16,19 +14,14 @@ interface CadastroForm {
 }
 
 export default function Cadastro() {
-  // const [loginIncorreto, setLoginIncorreto] = useState<boolean>(false);
-  // const { setAuthContext } = useAuthContext();
   const navigate = useNavigate();
 
   const onSubmit = async (payload: CadastroForm) => {
     try {
-      const data = await cadastro(payload);
-      console.log({ data });
+      await cadastro(payload);
       navigate("/");
-      // localStorage.setItem("token", JSON.stringify(data.accessToken));
-      // setAuthContext({ usuario: data.usuario });
     } catch (e) {
-      // setLoginIncorreto(true);
+      console.log({ e });
     }
   };
 
@@ -45,7 +38,7 @@ export default function Cadastro() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-      <FormField
+        <FormField
           control={form.control}
           name="nome"
           render={({ field }) => (
@@ -88,8 +81,9 @@ export default function Cadastro() {
         <Button type="submit" className="w-full">
           Cadastro
         </Button>
-        <p onClick={() => navigate('/login')} className="text-sky-600 mb-4 text-center cursor-pointer">Login</p>
-
+        <p onClick={() => navigate("/login")} className="text-sky-600 mb-4 text-center cursor-pointer">
+          Login
+        </p>
       </form>
     </Form>
   );

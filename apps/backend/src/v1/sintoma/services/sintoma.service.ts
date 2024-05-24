@@ -43,10 +43,6 @@ export class SintomaService {
     return this.repository.findOneBy({ id, animal: { usuario_id: userId } });
   }
 
-  //   async update(id: number, updateAnimalDto: UpdateAnimalDto): Promise<UpdateResult> {
-  //     return this.repository.update({ id }, updateAnimalDto);
-  //   }
-
   async remove(id: number): Promise<UpdateResult> {
     return this.repository.softDelete({ id });
   }
