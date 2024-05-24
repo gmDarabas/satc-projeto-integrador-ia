@@ -21,7 +21,11 @@ export default function ListaAnimais() {
 
       <div className="w-95/100 lg:w-3/5 mx-auto">
         {animais.map((animal, index) => (
-          <div key={index} className="flex items-center bg-white shadow-lg rounded-lg p-4 mb-4">
+          <div
+            key={index}
+            className="flex items-center bg-white shadow-lg rounded-lg p-4 mb-4 cursor-pointer"
+            onClick={() => navigate(`/animal/${animal.id}/cadastrar-sintoma`)}
+          >
             <ImagemAnimal imagem={animal.imagem} />
             <div className="ml-4">
               <h2 className="text-xl font-bold text-gray-900">{animal.nome}</h2>

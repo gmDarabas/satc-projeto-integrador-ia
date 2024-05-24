@@ -183,9 +183,14 @@ export default function SintomasPage() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Enviar
-          </Button>
+          <div className="flex flex-col md:flex-row md:space-y-0 md:space-x-2">
+            <Button className="w-full md:w-1/2 order-2 md:order-1" variant="outline" onClick={() => navigate("/")}>
+              Voltar
+            </Button>
+            <Button type="submit" className="mb-2 w-full md:w-1/2 order-1 md:order-2">
+              Salvar
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
