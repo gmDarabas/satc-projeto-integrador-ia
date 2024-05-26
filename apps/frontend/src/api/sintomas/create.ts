@@ -16,6 +16,7 @@ export type Sintoma = {
   descricao: string;
   animal: Animal;
   diagnostico?: string;
+  createdAt?: string;
 };
 
 export const sintomaSchema = z.object({

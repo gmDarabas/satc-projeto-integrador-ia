@@ -8,6 +8,9 @@ export class Sintoma extends CommonEntity {
   animal: Animal;
 
   @Column()
+  animal_id: number;
+
+  @Column()
   descricao: string;
 
   @Column()

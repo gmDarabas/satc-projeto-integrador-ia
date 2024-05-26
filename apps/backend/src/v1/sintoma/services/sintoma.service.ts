@@ -46,4 +46,12 @@ export class SintomaService {
   async remove(id: number): Promise<UpdateResult> {
     return this.repository.softDelete({ id });
   }
+
+  async findByAnimal(animalId: number) {
+    return this.repository.find({
+      where: {
+        animal_id: animalId,
+      },
+    });
+  }
 }
