@@ -1,5 +1,5 @@
 import { useAuthContext } from "@/components/auth-context";
-import { AvatarIcon } from "@radix-ui/react-icons";
+import { AvatarIcon, DotsVerticalIcon } from "@radix-ui/react-icons";
 import { useQueryClient } from "react-query";
 import { Outlet } from "react-router-dom";
 
@@ -16,6 +16,9 @@ export default function Layout() {
     <div className="bg-[#f7f7f7] h-[100vh]">
       <nav className="p-2 bg-white">
         <div className="flex justify-between items-center">
+          <div>
+            <DotsVerticalIcon className="ml-2" />
+          </div>
           <div className="flex items-center pl-4">
             <img src="./Frame.svg" className="max-h-[36px]" />
           </div>
