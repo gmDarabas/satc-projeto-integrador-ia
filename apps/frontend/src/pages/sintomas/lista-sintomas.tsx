@@ -1,7 +1,6 @@
 import { useGetSintomasByAnimal } from "@/api/sintomas/get-by-animal";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { PlusIcon } from "@radix-ui/react-icons";
 import { useParams } from "react-router-dom";
 
 const SintomaDateBadge = ({ date }: { date: string }) => {
@@ -18,11 +17,6 @@ export default function ListaSintomasPage() {
   const { data: sintomas } = useGetSintomasByAnimal(animalId ? +animalId : undefined);
   return (
     <>
-      <div>
-        <Card className="mx- p-6 my-2 flexp-4 flex items-center justify-center">
-          <PlusIcon className="size-7 text-neutral-700" />
-        </Card>
-      </div>
       {sintomas &&
         sintomas.map((sintoma, index) => (
           <Card key={index} className="p-4 my-4">
@@ -35,6 +29,10 @@ export default function ListaSintomasPage() {
             {sintoma.createdAt && <SintomaDateBadge date={sintoma.createdAt} />}
           </Card>
         ))}
+
+      <div>
+        <Card className="mx- p-3 my-2 flexp-4 flex items-center justify-center bg-gray-100">Novo Sintoma</Card>
+      </div>
     </>
   );
 }

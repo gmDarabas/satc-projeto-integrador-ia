@@ -180,7 +180,7 @@ export default function SintomaForm({ animalId }: Params) {
           </div>
         </div>
 
-        <FormField
+        {/* <FormField
           control={form.control}
           name="descricao"
           render={({ field }) => (
@@ -192,7 +192,7 @@ export default function SintomaForm({ animalId }: Params) {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         <div className="flex flex-col pt-4 md:flex-row md:space-y-0 md:space-x-2">
           <Button className="w-full md:w-1/2 order-3 md:order-1" variant="outline" onClick={() => navigate("/")}>
