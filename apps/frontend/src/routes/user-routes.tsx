@@ -6,6 +6,7 @@ import SintomaDetalhePage from "@/pages/sintomas/sintoma-detalhe";
 import Layout from "@/pages/layout";
 import AnimalDetalhesPage from "@/pages/animais/animal-detalhe-page";
 import ListaSintomasPage from "@/pages/sintomas/lista-sintomas";
+import ListaAnimais from "@/pages/animais/components/lista-animais";
 
 export default function UserRoutes() {
   return (
@@ -14,6 +15,7 @@ export default function UserRoutes() {
       <Route path="/cadastrar-sintoma" element={<NovoSintoma />} />
       <Route path="/animal/:animalId/informacoes" element={<AnimalDetalhesPage />} />
       <Route path="/animal/:animalId/cadastrar-sintoma" element={<NovoSintoma />} />
+      <Route path="/animal/:animalId/cadastrar-animal" element={<ListaAnimais />} />
       <Route path="/animal/:animalId/sintomas" element={<ListaSintomasPage />} />
       <Route path="/sintoma/:id" element={<SintomaDetalhePage />} />
       <Route path="*" element={<NotFoundRedirect to="/" />} />
