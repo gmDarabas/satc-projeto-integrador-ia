@@ -12,6 +12,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { getOne as getOneAnimal } from "@/api/animais/get-one";
 import { useCreateImagem } from "@/api/imagens/create";
 
+//todo - verificar forma de transformar o form de animal em genérico pra só adicionar os campos necessários para os sintomas aqui
+//todo - ajustar com backend pra salvar edições do pet separadamente do cadastro de novos sintomas (ainda estamos considerando ambos em uma mesma tela)
+
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   // FileList is immutable, so we need to create a new one
   const dataTransfer = new DataTransfer();
@@ -76,123 +79,127 @@ export default function SintomaForm({ animalId }: Params) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
-        <div className="grid grid-rows-1 grid-flow-col gap-4">
-          <Avatar className="w-36 h-36 rounded-sm">
-            <AvatarImage src={preview} />
-            <AvatarFallback className="bg-white">Pet</AvatarFallback>
-          </Avatar>
+        <div>
+          <div className="grid grid-rows-1 grid-flow-col gap-4">
+            <Avatar className="w-36 h-36 rounded-sm">
+              <AvatarImage src={preview} />
+              <AvatarFallback className="bg-white">Pet</AvatarFallback>
+            </Avatar>
 
-          <FormItem className="col-span-2">
-            <FormLabel>Foto do Animal</FormLabel>
-            <FormControl>
-              <Input type="file" onChange={(event) => onChangeImage(event)} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </div>
-
-        {/* Esse campo não aparece para o usuario, serve apenas para mandar ligacao da imagem para o backend */}
-        <FormField control={form.control} name="animal.imagem_id" render={() => <></>} />
-
-        <FormField
-          control={form.control}
-          name="animal.nome"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nome</FormLabel>
+            <FormItem className="col-span-2">
+              <FormLabel>Foto do Animal</FormLabel>
               <FormControl>
-                <Input placeholder="Nome do animal" {...field} />
+                <Input type="file" onChange={(event) => onChangeImage(event)} />
               </FormControl>
               <FormMessage />
             </FormItem>
-          )}
-        />
+          </div>
 
-        <FormField
-          control={form.control}
-          name="animal.especie"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Espécie</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+          {/* Esse campo não aparece para o usuario, serve apenas para mandar ligacao da imagem para o backend */}
+          <FormField control={form.control} name="animal.imagem_id" render={() => <></>} />
+
+          <FormField
+            control={form.control}
+            name="animal.nome"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome</FormLabel>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione uma espécie da lista" />
-                  </SelectTrigger>
+                  <Input placeholder="Nome do animal" {...field} />
                 </FormControl>
-                <SelectContent>
-                  {Object.values(Especie).map((especie) => (
-                    <SelectItem key={especie} value={especie}>
-                      {Especie[especie]}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="animal.raca"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Raça</FormLabel>
-              <FormControl>
-                <Input placeholder="Raça do animal" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="animal.especie"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Espécie</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione uma espécie da lista" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {Object.values(Especie).map((especie) => (
+                      <SelectItem key={especie} value={especie}>
+                        {Especie[especie]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <div className="grid grid-flow-col gap-4">
-          <div className="col-span-auto">
-            <FormField
-              control={form.control}
-              name="animal.peso"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Peso</FormLabel>
-                  <FormControl>
-                    <Input type="number" placeholder="Peso do animal" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div>
-            <FormField
-              control={form.control}
-              name="animal.idade"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Idade</FormLabel>
-                  <FormControl>
-                    <Input type="number" placeholder="Idade" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="animal.raca"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Raça</FormLabel>
+                <FormControl>
+                  <Input placeholder="Raça do animal" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="grid grid-flow-col gap-4">
+            <div className="col-span-auto">
+              <FormField
+                control={form.control}
+                name="animal.peso"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Peso</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="Peso do animal" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div>
+              <FormField
+                control={form.control}
+                name="animal.idade"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Idade</FormLabel>
+                    <FormControl>
+                      <Input type="number" placeholder="Idade" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
         </div>
 
-        {/* <FormField
+        {/* todo - ajustar backend para salvar atualização do cadastro do pet e salvar os sintomas */}
+        <FormField
           control={form.control}
           name="descricao"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Sintoma</FormLabel>
+              <FormLabel>Novo Sintoma</FormLabel>
               <FormControl>
                 <Input placeholder="Detalhe os sintomas" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
 
         <div className="flex flex-col pt-4 md:flex-row md:space-y-0 md:space-x-2">
           <Button className="w-full md:w-1/2 order-3 md:order-1" variant="outline" onClick={() => navigate("/")}>
@@ -205,7 +212,7 @@ export default function SintomaForm({ animalId }: Params) {
               variant="outline"
               onClick={() => navigate(`/animal/${animalId}/sintomas`)}
             >
-              Sintomas
+              Histórico de Sintomas
             </Button>
           )}
 

@@ -1,7 +1,7 @@
 import { useGetSintomasByAnimal } from "@/api/sintomas/get-by-animal";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SintomaDateBadge = ({ date }: { date: string }) => {
   const formattedDate = new Date(date).toLocaleDateString("pt-BR", {
@@ -14,6 +14,7 @@ const SintomaDateBadge = ({ date }: { date: string }) => {
 
 export default function ListaSintomasPage() {
   const { animalId } = useParams();
+  const navigate = useNavigate();
   const { data: sintomas } = useGetSintomasByAnimal(animalId ? +animalId : undefined);
   return (
     <>
@@ -31,7 +32,12 @@ export default function ListaSintomasPage() {
         ))}
 
       <div>
-        <Card className="mx- p-3 my-2 flexp-4 flex items-center justify-center bg-gray-100">Novo Sintoma</Card>
+        <Card
+          className="mx- p-3 my-2 flexp-4 flex items-center justify-center bg-gray-100"
+          onClick={() => navigate(`/animal/${animalId}/cadastrar-sintoma`)}
+        >
+          Novo Sintoma
+        </Card>
       </div>
     </>
   );

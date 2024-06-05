@@ -28,7 +28,7 @@ export const sintomaSchema = z.object({
     nome: z.string(),
     imagem_id: z.number().optional(),
   }),
-  descricao: z.string(),
+  descricao: z.string().optional(),
 });
 
 export type SchemaType = z.infer<typeof sintomaSchema>;
