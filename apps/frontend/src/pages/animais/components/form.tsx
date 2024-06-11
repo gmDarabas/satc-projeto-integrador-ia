@@ -181,10 +181,6 @@ export default function AnimalForm({ animalId }: Params) {
         </div>
 
         <div className="flex flex-col pt-4 md:flex-row md:space-y-0 md:space-x-2">
-          <Button className="w-full md:w-1/2 order-3 md:order-1" variant="outline" onClick={() => navigate("/")}>
-            Voltar
-          </Button>
-
           {animalId && (
             <Button
               className="w-full mb-2 md:w-1/2 order-2 md:order-2"
