@@ -1,5 +1,6 @@
 import { useGetSintomasByAnimal } from "@/api/sintomas/get-by-animal";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -17,10 +18,16 @@ export default function ListaSintomasPage() {
   const navigate = useNavigate();
   const { data: sintomas } = useGetSintomasByAnimal(animalId ? +animalId : undefined);
   return (
-    <>
+    <div className="h-full w-95/100 lg:w-3/5 mx-auto">
+      <div className="mt-8">
+        <Button className="mb-2 w-full bg-sky-600" onClick={() => navigate(`/animal/${animalId}/cadastrar-sintoma`)}>
+          Novo Sintoma
+        </Button>
+      </div>
+
       {sintomas &&
         sintomas.map((sintoma, index) => (
-          <Card key={index} className="p-4 my-4">
+          <Card key={index} className="p-4 mt-8">
             <p className="text-gray-700 text-lg">
               <strong>{sintoma.descricao}</strong>
             </p>
@@ -30,15 +37,6 @@ export default function ListaSintomasPage() {
             {sintoma.createdAt && <SintomaDateBadge date={sintoma.createdAt} />}
           </Card>
         ))}
-
-      <div>
-        <Card
-          className="mx- p-3 my-2 flexp-4 flex items-center justify-center bg-gray-100"
-          onClick={() => navigate(`/animal/${animalId}/cadastrar-sintoma`)}
-        >
-          Novo Sintoma
-        </Card>
-      </div>
-    </>
+    </div>
   );
 }

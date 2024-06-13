@@ -180,20 +180,16 @@ export default function AnimalForm({ animalId }: Params) {
           </div>
         </div>
 
-        <div className="flex flex-col pt-4 md:flex-row md:space-y-0 md:space-x-2">
+        <div className="flex flex-col pt-12">
+          <Button type="submit" className="mb-2 w-full bg-sky-600">
+            Salvar
+          </Button>
+
           {animalId && (
-            <Button
-              className="w-full mb-2 md:w-1/2 order-2 md:order-2"
-              variant="outline"
-              onClick={() => navigate(`/animal/${animalId}/sintomas`)}
-            >
+            <Button className="w-full mb-2" variant="outline" onClick={() => navigate(`/animal/${animalId}/sintomas`)}>
               Histórico de Sintomas
             </Button>
           )}
-
-          <Button type="submit" className="mb-2 w-full md:w-1/2 order-1 md:order-2">
-            Salvar
-          </Button>
         </div>
       </form>
     </Form>

@@ -78,7 +78,7 @@ export default function SintomaForm({ animalId }: Params) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full h-full w-95/100 lg:w-3/5 mx-auto">
         <div>
           <div className="grid grid-rows-1 grid-flow-col gap-4">
             <Avatar className="w-36 h-36 rounded-sm">
@@ -201,20 +201,22 @@ export default function SintomaForm({ animalId }: Params) {
           )}
         />
 
-        <div className="flex flex-col pt-4 md:flex-row md:space-y-0 md:space-x-2">
-          {animalId && (
-            <Button
-              className="w-full mb-2 md:w-1/2 order-2 md:order-2"
-              variant="outline"
-              onClick={() => navigate(`/animal/${animalId}/sintomas`)}
-            >
-              Histórico de Sintomas
-            </Button>
-          )}
-
-          <Button type="submit" className="mb-2 w-full md:w-1/2 order-1 md:order-2">
+        <div className="pt-4">
+          <Button type="submit" className="mb-2 w-full bg-sky-500">
             Salvar
           </Button>
+
+          <div className="flex flex-col">
+            {animalId && (
+              <Button
+                className="mb-2 w-full"
+                variant="outline"
+                onClick={() => navigate(`/animal/${animalId}/sintomas`)}
+              >
+                Histórico de Sintomas
+              </Button>
+            )}
+          </div>
         </div>
       </form>
     </Form>
