@@ -1,4 +1,5 @@
 import { useGetSintoma } from "@/api/sintomas/get-one";
+import MapaVet from "@/components/mapa";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,12 +29,16 @@ export default function SintomaDetalhePage() {
         <Textarea id="sintoma" disabled value={sintoma?.descricao} />
       </div>
 
-      <div className="grid w-full w-10/12 items-center gap-1.5">
+      <div className="grid w-full w-10/12 items-center gap-1.5 mb-5">
         <Label htmlFor="diagnostico">Pré Diagnóstico</Label>
         <Textarea id="diagnostico" disabled value={sintoma?.diagnostico} rows={6} />
-        <p className="text-sm text-muted-foreground">
-          Este é apenas um pré diagnóstico, consulte um veterinário capacitado assim que possível
-        </p>
+        <div className="text-sm text-muted-foreground">
+          Este é apenas um pré diagnóstico, consulte um veterinário capacitado assim que possível.
+        </div>
+      </div>
+
+      <div className="w-full w-10/12 mb-5">
+        <MapaVet />
       </div>
 
       <Button className="w-10/12 mx-auto mt-12" onClick={() => navigate("/")}>
