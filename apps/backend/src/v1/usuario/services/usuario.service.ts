@@ -35,6 +35,9 @@ export class UsuarioService {
   }
 
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto): Promise<UpdateResult> {
+    if (updateUsuarioDto.senha) {
+      updateUsuarioDto.senha = await this.encryptionService.hashPassword(updateUsuarioDto.senha);
+    }
     return this.repository.update({ id }, updateUsuarioDto);
   }
 

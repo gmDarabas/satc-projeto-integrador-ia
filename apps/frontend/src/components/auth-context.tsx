@@ -1,7 +1,13 @@
 import { useState, createContext, useContext } from "react";
 
+export type Usuario = {
+  nome: string;
+  email: string;
+  id: number;
+};
+
 export interface AuthContext {
-  usuario: string;
+  usuario: Usuario;
 }
 
 interface AuthContextType {
