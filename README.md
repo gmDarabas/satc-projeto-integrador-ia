@@ -36,6 +36,7 @@ Atualmente, pais de pet enfrentam uma dificuldade significativa ao buscar respos
 ## Estrutura do Projeto
 
 * Tela de Login
+* Tela de cadastro de usuario
 * Tela de cadastro de PET's
 * Tela de Sintomas
 * Tela de Animais
