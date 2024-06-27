@@ -34,11 +34,9 @@ Atualmente, pais de pet enfrentam uma dificuldade significativa ao buscar respos
 
 ## Estrutura do Projeto
 
-* Tela de login
-* Tela de cadastro de usuário
-* Tela de cadastro de Produtos
-* Tela de cadastro de Tipos de Produtos
-* Movimentações
+* Tela de cadastro de PET's
+* Tela de Sintomas
+* Tela de Pet-Shop / Veterinário
 
 <br>
 
