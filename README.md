@@ -7,7 +7,6 @@
 </div>
   
 <br>
-
 ## Integrantes
 * [Alex Farias](https://github.com/Alex-Farias)
 * [Guilherme Machado Darabas](https://github.com/gmdarabas)
