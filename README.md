@@ -3,7 +3,7 @@
 ## Projeto: <b>PetCare</b>
 
 <div align="center">
-<img src="./blob/main/petcare.png" alt="petcare">
+<img src="https://github.com/gmDarabas/satc-projeto-integrador-ia/blob/main/petcare.png" alt="petcare">
 </div>
   
 <br>
