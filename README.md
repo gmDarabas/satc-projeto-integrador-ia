@@ -44,7 +44,7 @@ Atualmente, pais de pet enfrentam uma dificuldade significativa ao buscar respos
 
 ## Público Alvo
 <p style="text-indent: 5px; margin-left:10px;">
-Nosso público alvo é donos dee PET, mas a cliente em questão é Lara Sartor Aguiar que é uma "mãe de pet" e possui a Babi, sua cachorrinha que vem apresentando diversos problemas de comportamento e saúde por conta de sua idade avançada. Lara relatou também que Babi vem apresentando estranho comportamento ao urinar em locais inconsistentes da casa onde vivem e sobre a preocupação referente ao peso de sua amiguinha. Por conta do dia a dia cheio com trabalho e faculdade, Lara não consegue prestar toda a atenção necessária que um pet necessita e comentou que caso obtivesse uma certa ajuda/auxílio com alguma solução prática de fácil utilização no dia a dia ajudaria não só ela, mas também diversos conhecidos e amigos dela que em outros momentos compartilharam das mesmas preocupações.
+Nosso público alvo é donos de PET, mas a cliente em questão é Lara Sartor Aguiar que é uma "mãe de pet" e possui a Babi, sua cachorrinha que vem apresentando diversos problemas de comportamento e saúde por conta de sua idade avançada. Lara relatou também que Babi vem apresentando estranho comportamento ao urinar em locais inconsistentes da casa onde vivem e sobre a preocupação referente ao peso de sua amiguinha. Por conta do dia a dia cheio com trabalho e faculdade, Lara não consegue prestar toda a atenção necessária que um pet necessita e comentou que caso obtivesse uma certa ajuda/auxílio com alguma solução prática de fácil utilização no dia a dia ajudaria não só ela, mas também diversos conhecidos e amigos dela que em outros momentos compartilharam das mesmas preocupações.
 </p>
 
 <br>
