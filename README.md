@@ -3,7 +3,7 @@
 ## Projeto: <b>PetCare</b>
 
 <div align="center">
-  ![petcare](https://github.com/gmDarabas/satc-projeto-integrador-ia/assets/126422703/2e7ce500-a15a-43bf-a724-f722b5c97478)
+
 </div>
   
 <br>
