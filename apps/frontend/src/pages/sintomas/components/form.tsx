@@ -1,16 +1,19 @@
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Especie, sintomaSchema, useCreateSintoma } from "@/api/sintomas/create";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-import { Especie, sintomaSchema, useCreateSintoma } from "@/api/sintomas/create";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
 import { getOne as getOneAnimal } from "@/api/animais/get-one";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useCreateImagem } from "@/api/imagens/create";
+
+//todo - verificar forma de transformar o form de animal em genérico pra só adicionar os campos necessários para os sintomas aqui
+//todo - ajustar com backend pra salvar edições do pet separadamente do cadastro de novos sintomas (ainda estamos considerando ambos em uma mesma tela)
 
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
   // FileList is immutable, so we need to create a new one
@@ -25,9 +28,12 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
   return { files, displayUrl };
 }
 
-export default function SintomasPage() {
+type Params = {
+  animalId?: number;
+};
+
+export default function SintomaForm({ animalId }: Params) {
   const navigate = useNavigate();
-  const { animalId } = useParams();
   const [preview, setPreview] = useState("");
 
   const form = useForm<z.infer<typeof sintomaSchema>>({ resolver: zodResolver(sintomaSchema) });
@@ -39,9 +45,18 @@ export default function SintomasPage() {
     navigate(`/sintoma/${sintoma.id}`);
   };
 
+  // todo usar react query
   const loadAnimal = async () => {
     if (animalId && !isNaN(+animalId)) {
       const animal = await getOneAnimal(+animalId);
+
+      if (animal.imagem) {
+        // converte o binario para blob e seta o preview
+        const byteArray = new Uint8Array(animal.imagem.data.data);
+        const blob = new Blob([byteArray], { type: "application/octet-stream" });
+        const preview = URL.createObjectURL(blob);
+        setPreview(preview);
+      }
 
       form.setValue("animal", animal);
     }
@@ -62,10 +77,9 @@ export default function SintomasPage() {
   };
 
   return (
-    <div className="mx-5">
-      <h2 className="text-2xl font-bold mb-4 text-center">Relatar Sintoma</h2>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full h-full w-95/100 lg:w-3/5 mx-auto">
+        <div>
           <div className="grid grid-rows-1 grid-flow-col gap-4">
             <Avatar className="w-36 h-36 rounded-sm">
               <AvatarImage src={preview} />
@@ -153,6 +167,7 @@ export default function SintomasPage() {
                 )}
               />
             </div>
+
             <div>
               <FormField
                 control={form.control}
@@ -169,30 +184,41 @@ export default function SintomasPage() {
               />
             </div>
           </div>
+        </div>
 
-          <FormField
-            control={form.control}
-            name="descricao"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Sintoma</FormLabel>
-                <FormControl>
-                  <Input placeholder="Detalhe os sintomas" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+        {/* todo - ajustar backend para salvar atualização do cadastro do pet e salvar os sintomas */}
+        <FormField
+          control={form.control}
+          name="descricao"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Novo Sintoma</FormLabel>
+              <FormControl>
+                <Input placeholder="Detalhe os sintomas" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="pt-4">
+          <Button type="submit" className="mb-2 w-full bg-sky-500">
+            Salvar
+          </Button>
+
+          <div className="flex flex-col">
+            {animalId && (
+              <Button
+                className="mb-2 w-full"
+                variant="outline"
+                onClick={() => navigate(`/animal/${animalId}/sintomas`)}
+              >
+                Histórico de Sintomas
+              </Button>
             )}
-          />
-          <div className="flex flex-col md:flex-row md:space-y-0 md:space-x-2">
-            <Button className="w-full md:w-1/2 order-2 md:order-1" variant="outline" onClick={() => navigate("/")}>
-              Voltar
-            </Button>
-            <Button type="submit" className="mb-2 w-full md:w-1/2 order-1 md:order-2">
-              Salvar
-            </Button>
           </div>
-        </form>
-      </Form>
-    </div>
+        </div>
+      </form>
+    </Form>
   );
 }

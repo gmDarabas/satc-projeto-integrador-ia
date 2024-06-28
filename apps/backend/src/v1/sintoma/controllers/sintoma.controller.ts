@@ -18,4 +18,9 @@ export class SintomaController {
   getOne(@Param("id") id: any, @Req() req: Request) {
     return this.sintomaService.findOne(+id, req.usuario.id);
   }
+
+  @Get("animal/:animalId")
+  findByAnimal(@Param("animalId") animalId: any) {
+    return this.sintomaService.findByAnimal(+animalId);
+  }
 }

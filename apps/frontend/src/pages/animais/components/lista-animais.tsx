@@ -1,9 +1,8 @@
 import { useListAnimais } from "@/api/animais/list";
-import { Button } from "@/components/ui/button";
-import { PlusIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
-import ImagemAnimal from "./imagem-animal";
-import { Badge } from "@/components/ui/badge";
+import CardAnimal from "./card-animal";
+import Ellipse from "../../../assets/Ellipse.png";
+import { Button } from "@/components/ui/button";
 
 export default function ListaAnimais() {
   const { data: animais = [] } = useListAnimais();
@@ -11,30 +10,29 @@ export default function ListaAnimais() {
   const navegarCriar = () => navigate("/cadastrar-sintoma");
 
   return (
-    <div className="h-full">
-      <h2 className="text-2xl font-bold mb-4 text-center">
-        Lista de Animais
-        <Button className="ml-2 rounded-full" variant="outline" size="icon" onClick={navegarCriar}>
-          <PlusIcon />
-        </Button>
-      </h2>
+    <div className="h-full w-95/100 lg:w-3/5 mx-auto">
+      <h2 className="text-2xl font-bold mt-6 mb-12 text-center">Lista de Animais</h2>
 
-      <div className="w-95/100 lg:w-3/5 mx-auto">
-        {animais.map((animal, index) => (
-          <div
-            key={index}
-            className="flex items-center bg-white shadow-lg rounded-lg p-4 mb-4 cursor-pointer"
-            onClick={() => navigate(`/animal/${animal.id}/cadastrar-sintoma`)}
+      <div>
+        <div className="flex items-center justify-center h-full">
+          <img className="flex align-middle" src={Ellipse} alt="Centered Image"></img>
+        </div>
+        <div className="mt-8">
+          <Button
+            className="flex w-full flex-col items-center justify-center rounded-lg p-2 my-2 font-bold bg-sky-600 cursor-pointer"
+            onClick={navegarCriar}
           >
-            <ImagemAnimal imagem={animal.imagem} />
-            <div className="ml-4">
-              <h2 className="text-xl font-bold text-gray-900">{animal.nome}</h2>
-              <p className="text-gray-700">
-                <Badge>{animal.especie}</Badge> <Badge>{animal.raca}</Badge>
-              </p>
-            </div>
-          </div>
-        ))}
+            Novo Pet
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <div>
+          {animais.map((animal, index) => (
+            <CardAnimal animal={animal} key={index} />
+          ))}
+        </div>
       </div>
     </div>
   );

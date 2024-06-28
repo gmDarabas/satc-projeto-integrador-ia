@@ -27,7 +27,7 @@ export class AnimalService {
   }
 
   async findOne(id: number, usuarioId: number): Promise<Animal> {
-    return this.repository.findOneBy({ id, usuario_id: usuarioId });
+    return this.repository.findOne({ where: { id, usuario_id: usuarioId }, relations: ["imagem"] });
   }
 
   async update(id: number, updateAnimalDto: UpdateAnimalDto): Promise<UpdateResult> {

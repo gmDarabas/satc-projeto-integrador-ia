@@ -16,10 +16,9 @@ export type Sintoma = {
   descricao: string;
   animal: Animal;
   diagnostico?: string;
-  createdAt?: string;
 };
 
-export const sintomaSchema = z.object({
+export const animalSchema = z.object({
   animal: z.object({
     especie: z.nativeEnum(Especie),
     raca: z.string(),
@@ -28,17 +27,17 @@ export const sintomaSchema = z.object({
     nome: z.string(),
     imagem_id: z.number().optional(),
   }),
-  descricao: z.string().optional(),
+  descricao: z.string(),
 });
 
-export type SchemaType = z.infer<typeof sintomaSchema>;
+export type SchemaType = z.infer<typeof animalSchema>;
 
 export const create = async (data: SchemaType): Promise<Sintoma> => {
   const result = await apiBackend.post<Sintoma>("/api/v1/sintomas", data);
   return result.data;
 };
 
-export const useCreateSintoma = (options?: Record<string, unknown>) => {
+export const useCreateAnimal = (options?: Record<string, unknown>) => {
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
@@ -48,7 +47,7 @@ export const useCreateSintoma = (options?: Record<string, unknown>) => {
       queryClient.invalidateQueries("animais");
     },
     onError: () => {
-      toast({ title: "Erro ao cadastrar sintoma", variant: "destructive" });
+      toast({ title: "Erro ao cadastrar pet", variant: "destructive" });
     },
   });
 };

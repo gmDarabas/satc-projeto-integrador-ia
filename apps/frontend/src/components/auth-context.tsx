@@ -1,12 +1,19 @@
 import { useState, createContext, useContext } from "react";
 
+export type Usuario = {
+  nome: string;
+  email: string;
+  id: number;
+};
+
 export interface AuthContext {
-  usuario: string;
+  usuario: Usuario;
 }
 
 interface AuthContextType {
   authContext: AuthContext | undefined;
   setAuthContext: (authContext: AuthContext | undefined) => void;
+  logout: () => void;
 }
 
 const CONTEXT_KEY = "authContext";
@@ -26,7 +33,11 @@ export function AuthContextProvider(props: any) {
     setAuthContext(authContext);
   };
 
-  return <AuthContext.Provider value={{ authContext, setAuthContext: setLocalStorage }} {...props} />;
+  const logout = () => {
+    setLocalStorage(undefined);
+  };
+
+  return <AuthContext.Provider value={{ authContext, setAuthContext: setLocalStorage, logout }} {...props} />;
 }
 
 export function useAuthContext() {
