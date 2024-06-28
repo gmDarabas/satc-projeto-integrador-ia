@@ -35,6 +35,7 @@ type Params = {
 export default function SintomaForm({ animalId }: Params) {
   const navigate = useNavigate();
   const [preview, setPreview] = useState("");
+  const [refresh, setRefresh] = useState(new Date().getTime());
 
   const form = useForm<z.infer<typeof sintomaSchema>>({ resolver: zodResolver(sintomaSchema) });
   const { mutateAsync: criarSintoma } = useCreateSintoma();
@@ -74,6 +75,7 @@ export default function SintomaForm({ animalId }: Params) {
     form.setValue("animal.imagem_id", imagem.id);
     form.setValue("animal.especie", predicao.especie);
     form.setValue("animal.raca", predicao.raca);
+    setRefresh(new Date().getTime());
   };
 
   return (
@@ -114,6 +116,7 @@ export default function SintomaForm({ animalId }: Params) {
 
           <FormField
             control={form.control}
+            key={refresh}
             name="animal.especie"
             render={({ field }) => (
               <FormItem>

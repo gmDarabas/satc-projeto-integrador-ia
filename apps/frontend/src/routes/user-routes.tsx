@@ -11,13 +11,14 @@ import { MenuItem } from "@/components/ui/menu-bar";
 import { HomeIcon, InfoCircledIcon, PersonIcon, ExitIcon } from "@radix-ui/react-icons";
 import { Logout } from "@/pages/auth/logout";
 import PerfilPage from "@/pages/perfil/perfil-page";
+import SobreNosPage from "@/pages/sobre-nos";
 
 const MenuIcon = ({ Icon }: any) => <Icon width={24} height={24} className="mb-1" />;
 
 const menuItems: MenuItem[] = [
   { key: "/", icon: <MenuIcon Icon={HomeIcon} />, label: "Início" },
   { key: "/perfil", icon: <MenuIcon Icon={PersonIcon} />, label: "Perfil" },
-  { key: "info", icon: <MenuIcon Icon={InfoCircledIcon} />, label: "Info" },
+  { key: "/sobre-nos", icon: <MenuIcon Icon={InfoCircledIcon} />, label: "Sobre Nós" },
   { key: "logout", icon: <MenuIcon Icon={ExitIcon} />, label: "Sair" },
 ];
 
@@ -32,6 +33,7 @@ export default function UserRoutes() {
       <Route path="/animal/:animalId/cadastrar-animal" element={<ListaAnimais />} />
       <Route path="/animal/:animalId/sintomas" element={<ListaSintomasPage />} />
       <Route path="/sintoma/:id" element={<SintomaDetalhePage />} />
+      <Route path="/sobre-nos" element={<SobreNosPage />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="*" element={<NotFoundRedirect to="/" />} />
     </Route>

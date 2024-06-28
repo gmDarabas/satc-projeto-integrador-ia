@@ -1,7 +1,7 @@
 import { useListAnimais } from "@/api/animais/list";
 import { useNavigate } from "react-router-dom";
 import CardAnimal from "./card-animal";
-import Ellipse from "../../../assets/Ellipse.png";
+import Ellipse from "../../../assets/Ellipse.svg";
 import { Button } from "@/components/ui/button";
 
 export default function ListaAnimais() {
@@ -10,7 +10,7 @@ export default function ListaAnimais() {
   const navegarCriar = () => navigate("/cadastrar-sintoma");
 
   return (
-    <div className="h-full w-95/100 lg:w-3/5 mx-auto">
+    <div className="h-full w-95/100 lg:w-3/5 mx-auto mb-20">
       <h2 className="text-2xl font-bold mt-6 mb-12 text-center">Lista de Animais</h2>
 
       <div>
