@@ -1,5 +1,5 @@
 import { useGetSintoma } from "@/api/sintomas/get-one";
-import MapaVet from "@/components/mapa";
+import MapaVeterinaria from "@/components/mapa";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,7 +21,7 @@ export default function SintomaDetalhePage() {
   const { data: sintoma } = useGetSintoma(temId ? +id : undefined);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-2">
+    <div className="flex flex-col items-center justify-center mt-2 mb-20">
       <h2 className="text-2xl font-bold mb-4 text-center">Sintoma</h2>
 
       <div className="grid w-full w-10/12 items-center gap-1.5 mb-5">
@@ -37,13 +37,13 @@ export default function SintomaDetalhePage() {
         </div>
       </div>
 
-      <div className="w-full w-10/12 mb-5">
-        <MapaVet />
-      </div>
-
-      <Button className="w-10/12 mx-auto mt-12" onClick={() => navigate("/")}>
+      <Button className="w-10/12 mx-auto mt-12 mb-4" onClick={() => navigate("/")}>
         Voltar
       </Button>
+
+      <div className="w-full w-10/12 mb-5">
+        <MapaVeterinaria />
+      </div>
     </div>
   );
 }

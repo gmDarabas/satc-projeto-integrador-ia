@@ -2,7 +2,7 @@ import ArrowReturn from "./layout-return";
 
 export function NavBar() {
   return (
-    <nav className="top-0 left-0 w-full p-2 bg-white">
+    <nav className="bg-white shadow-md p-4">
       <div className="flex px-2 md:px-6 justify-between items-center">
         <div className="flex items-center">
           <ArrowReturn />

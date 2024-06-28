@@ -18,7 +18,7 @@ const MenuIcon = ({ Icon }: any) => <Icon width={24} height={24} className="mb-1
 const menuItems: MenuItem[] = [
   { key: "/", icon: <MenuIcon Icon={HomeIcon} />, label: "Início" },
   { key: "/perfil", icon: <MenuIcon Icon={PersonIcon} />, label: "Perfil" },
-  { key: "/sobre-nos", icon: <MenuIcon Icon={InfoCircledIcon} />, label: "Sobre Nós" },
+  { key: "/sobre-nos", icon: <MenuIcon Icon={InfoCircledIcon} />, label: "Sobre" },
   { key: "logout", icon: <MenuIcon Icon={ExitIcon} />, label: "Sair" },
 ];
 

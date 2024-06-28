@@ -8,14 +8,17 @@ export type MenuItem = {
 
 type Props = {
   menuItems: MenuItem[];
+  bottom?: boolean;
 };
 
-export const Menu = ({ menuItems }: Props) => {
+export const Menu = ({ menuItems, bottom }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed bottom-0 left-0 w-full md:top-10 md:w-auto md:h-full md:flex md:flex-col mt-3 z-50 pointer-events-none bg-white">
-      <div className="flex flex-row md:flex-col h-full py-2 md:py-0 md:ml-3 justify-between md:justify-start items-center md:items-start pointer-events-auto">
+    <div
+      className={`bg-white shadow-md ${bottom ? "fixed bottom-0 w-full flex justify-around py-2 md:hidden" : "hidden md:block p-4"}`}
+    >
+      <div className={`space-y-4 ${bottom ? "w-full flex space-y-0 justify-around" : ""}`}>
         {menuItems.map((item) => (
           <div
             key={item.key}
